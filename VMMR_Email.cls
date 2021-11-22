@@ -1,4 +1,4 @@
-global class ClaimEvidenceEmailServiceHandler implements Messaging.InboundEmailHandler{
+global class VMMR_Email implements Messaging.InboundEmailHandler{
     global Messaging.InboundEmailResult handleInboundEmail(Messaging.InboundEmail email, Messaging.Inboundenvelope envelope){
         Messaging.InboundEmailResult result = new Messaging.InboundEmailResult();
         
