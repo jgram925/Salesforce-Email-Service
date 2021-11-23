@@ -15,7 +15,7 @@ global class VMMR_Email implements Messaging.InboundEmailHandler{
         Matcher match = pattern.matcher(email.subject);
         System.debug(email.subject);
         if(match.find()){            
-			matched = match.group(1);
+		matched = match.group(1);
        		System.debug(matched);
         }
         
@@ -24,19 +24,19 @@ global class VMMR_Email implements Messaging.InboundEmailHandler{
         try{
             if(vmmr_list.isEmpty()){
                 vmmr = new VMM_Report__c();                              
-				vmmr.Email__c = 'Subject: ' + email.subject + 
-                    				 '\n From: ' + email.fromAddress + 
-                    				 '\n CCd: ' + email.ccAddresses +                     				 
-                    				 '\n Email Body: ' + email.plainTextBody;
+		vmmr.Email__c = 'Subject: ' + email.subject + 
+                    		'\n From: ' + email.fromAddress + 
+                    		'\n CCd: ' + email.ccAddresses +                     				 
+                    		'\n Email Body: ' + email.plainTextBody;
                 insert vmmr;
             }else{
                 vmmr = [SELECT Name, Email__c FROM VMM_Report__c WHERE Name = :matched];
                 string email_body = vmmr.Email__c;
                 vmmr.Email__c = 'Subject: ' + email.subject + 
-                    				 '\n From: ' + email.fromAddress + 
-                    				 '\n CCd: ' + email.ccAddresses +                     				 
-                    				 '\n Email Body: ' + email.plainTextBody +
-                    				 '\n\n\n' + email_body;
+                    		'\n From: ' + email.fromAddress + 
+                    		'\n CCd: ' + email.ccAddresses +                     				 
+                    		'\n Email Body: ' + email.plainTextBody +
+                    		'\n\n\n' + email_body;
                 upsert vmmr;
             }
                 
