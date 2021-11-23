@@ -8,7 +8,7 @@ global class VMMR_Email implements Messaging.InboundEmailHandler{
         Messaging.InboundEmailResult result = new Messaging.InboundEmailResult();
         
         String matched;        
-		String now = string.valueOfGmt(System.Now());
+	String now = string.valueOfGmt(System.Now());
         VMM_Report__c vmmr;
 
         Pattern pattern = Pattern.compile('(VMMR-[0-9]{9})');
